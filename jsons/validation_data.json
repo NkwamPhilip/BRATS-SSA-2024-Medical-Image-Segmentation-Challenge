@@ -1,0 +1,354 @@
+{
+    "validation": [
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00143-000/BraTS-SSA-00143-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00143-000/BraTS-SSA-00143-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00143-000/BraTS-SSA-00143-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00143-000/BraTS-SSA-00143-000-t2f.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00192-000/BraTS-SSA-00192-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00192-000/BraTS-SSA-00192-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00192-000/BraTS-SSA-00192-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00192-000/BraTS-SSA-00192-000-t1c.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00218-000/BraTS-SSA-00218-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00218-000/BraTS-SSA-00218-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00218-000/BraTS-SSA-00218-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00218-000/BraTS-SSA-00218-000-t1c.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00134-000/BraTS-SSA-00134-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00134-000/BraTS-SSA-00134-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00134-000/BraTS-SSA-00134-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00134-000/BraTS-SSA-00134-000-t2f.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00210-000/BraTS-SSA-00210-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00210-000/BraTS-SSA-00210-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00210-000/BraTS-SSA-00210-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00210-000/BraTS-SSA-00210-000-t2f.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00140-000/BraTS-SSA-00140-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00140-000/BraTS-SSA-00140-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00140-000/BraTS-SSA-00140-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00140-000/BraTS-SSA-00140-000-t2f.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00126-000/BraTS-SSA-00126-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00126-000/BraTS-SSA-00126-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00126-000/BraTS-SSA-00126-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00126-000/BraTS-SSA-00126-000-t1n.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00163-000/BraTS-SSA-00163-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00163-000/BraTS-SSA-00163-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00163-000/BraTS-SSA-00163-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00163-000/BraTS-SSA-00163-000-t1n.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00157-000/BraTS-SSA-00157-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00157-000/BraTS-SSA-00157-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00157-000/BraTS-SSA-00157-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00157-000/BraTS-SSA-00157-000-t1c.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00125-000/BraTS-SSA-00125-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00125-000/BraTS-SSA-00125-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00125-000/BraTS-SSA-00125-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00125-000/BraTS-SSA-00125-000-t1n.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00138-000/BraTS-SSA-00138-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00138-000/BraTS-SSA-00138-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00138-000/BraTS-SSA-00138-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00138-000/BraTS-SSA-00138-000-t2w.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00174-000/BraTS-SSA-00174-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00174-000/BraTS-SSA-00174-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00174-000/BraTS-SSA-00174-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00174-000/BraTS-SSA-00174-000-t1c.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00137-000/BraTS-SSA-00137-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00137-000/BraTS-SSA-00137-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00137-000/BraTS-SSA-00137-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00137-000/BraTS-SSA-00137-000-t1n.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00129-000/BraTS-SSA-00129-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00129-000/BraTS-SSA-00129-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00129-000/BraTS-SSA-00129-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00129-000/BraTS-SSA-00129-000-t1n.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00206-000/BraTS-SSA-00206-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00206-000/BraTS-SSA-00206-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00206-000/BraTS-SSA-00206-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00206-000/BraTS-SSA-00206-000-t2f.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00169-000/BraTS-SSA-00169-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00169-000/BraTS-SSA-00169-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00169-000/BraTS-SSA-00169-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00169-000/BraTS-SSA-00169-000-t1n.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00171-000/BraTS-SSA-00171-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00171-000/BraTS-SSA-00171-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00171-000/BraTS-SSA-00171-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00171-000/BraTS-SSA-00171-000-t1c.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00132-000/BraTS-SSA-00132-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00132-000/BraTS-SSA-00132-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00132-000/BraTS-SSA-00132-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00132-000/BraTS-SSA-00132-000-t1n.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00180-000/BraTS-SSA-00180-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00180-000/BraTS-SSA-00180-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00180-000/BraTS-SSA-00180-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00180-000/BraTS-SSA-00180-000-t1c.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00158-000/BraTS-SSA-00158-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00158-000/BraTS-SSA-00158-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00158-000/BraTS-SSA-00158-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00158-000/BraTS-SSA-00158-000-t1c.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00136-000/BraTS-SSA-00136-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00136-000/BraTS-SSA-00136-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00136-000/BraTS-SSA-00136-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00136-000/BraTS-SSA-00136-000-t1c.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00198-000/BraTS-SSA-00198-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00198-000/BraTS-SSA-00198-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00198-000/BraTS-SSA-00198-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00198-000/BraTS-SSA-00198-000-t2f.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00227-000/BraTS-SSA-00227-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00227-000/BraTS-SSA-00227-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00227-000/BraTS-SSA-00227-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00227-000/BraTS-SSA-00227-000-t2w.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00207-000/BraTS-SSA-00207-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00207-000/BraTS-SSA-00207-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00207-000/BraTS-SSA-00207-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00207-000/BraTS-SSA-00207-000-t1n.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00179-000/BraTS-SSA-00179-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00179-000/BraTS-SSA-00179-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00179-000/BraTS-SSA-00179-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00179-000/BraTS-SSA-00179-000-t1c.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00154-000/BraTS-SSA-00154-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00154-000/BraTS-SSA-00154-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00154-000/BraTS-SSA-00154-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00154-000/BraTS-SSA-00154-000-t2f.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00188-000/BraTS-SSA-00188-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00188-000/BraTS-SSA-00188-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00188-000/BraTS-SSA-00188-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00188-000/BraTS-SSA-00188-000-t2w.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00225-000/BraTS-SSA-00225-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00225-000/BraTS-SSA-00225-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00225-000/BraTS-SSA-00225-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00225-000/BraTS-SSA-00225-000-t1n.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00226-000/BraTS-SSA-00226-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00226-000/BraTS-SSA-00226-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00226-000/BraTS-SSA-00226-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00226-000/BraTS-SSA-00226-000-t2f.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00148-000/BraTS-SSA-00148-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00148-000/BraTS-SSA-00148-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00148-000/BraTS-SSA-00148-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00148-000/BraTS-SSA-00148-000-t1c.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00130-000/BraTS-SSA-00130-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00130-000/BraTS-SSA-00130-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00130-000/BraTS-SSA-00130-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00130-000/BraTS-SSA-00130-000-t2f.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00228-000/BraTS-SSA-00228-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00228-000/BraTS-SSA-00228-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00228-000/BraTS-SSA-00228-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00228-000/BraTS-SSA-00228-000-t1c.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00155-000/BraTS-SSA-00155-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00155-000/BraTS-SSA-00155-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00155-000/BraTS-SSA-00155-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00155-000/BraTS-SSA-00155-000-t2w.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00175-000/BraTS-SSA-00175-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00175-000/BraTS-SSA-00175-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00175-000/BraTS-SSA-00175-000-t1n.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00175-000/BraTS-SSA-00175-000-t2f.nii.gz"
+            ],
+            "label": ""
+        },
+        {
+            "fold": 0,
+            "image": [
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00139-000/BraTS-SSA-00139-000-t1c.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00139-000/BraTS-SSA-00139-000-t2f.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00139-000/BraTS-SSA-00139-000-t2w.nii.gz",
+                "/gpfs/fs0/scratch/u/uanazodo/spark6/spark24/validate/BraTS-SSA-00139-000/BraTS-SSA-00139-000-t1n.nii.gz"
+            ],
+            "label": ""
+        }
+    ]
+}
