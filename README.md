@@ -6,11 +6,6 @@ We employed two different approaches.
 (2) Train the model exclusively on the BraTS-Africa dataset to focus entirely on African-specific glioma characteristics. This strategy aims to eliminate any potential bias introduced by the BraTS-GLI 2021 dataset and ensures that the model is tailored entirely to the imaging and anatomical characteristics present in African patients.
 Our pretrained model was trained on BraTS-GLI with 1251 cases and no additional data. We used a five-fold cross-validation (0-4) with a ratio of 80:20 based on MONAI SwinUNTER implementation.
 
-# Tutorial
-A colab file for BraTS21 brain tumor segmentation using Swin UNETR model is provided in the following link.
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Project-MONAI/tutorials/blob/main/3d_segmentation/swin_unetr_brats21_segmentation_3d.ipynb)
-
 Model was trained on compute canada (cc).
 
 # Installing Dependencies
