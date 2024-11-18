@@ -1,4 +1,4 @@
-# MICCAI 2024 Brain Tumor Segmentation Challenge: Team Transformers - Spark6
+# MICCAI 2024 Brain Tumor Segmentation Challenge: Spark Team Transformers - 
 This repository contains is SWIN-UNETR implementation for brain tumor  segmentation using the  BraTS-GLI Dataset (http://braintumorsegmentation.org/) for pretraining and BraTS-SSA dataset for finetuning and in-house validation.
 
 We employed two different approaches.
@@ -35,7 +35,7 @@ For pretraining, json files can be generated using generate.py. Ensure you modif
 python generate.py
 ```
 
-We switched the BraTS-SSA dataset label 3 back to 4, changing blue to yellow
+# We switched the BraTS-SSA dataset label 3 back to 4, changing blue to yellow
 
 The provided segmentation labels have values of 1(red) for NCR, 2(green) for ED, 4(yellow) for ET, and 0 for everything else.
 
@@ -70,17 +70,17 @@ correspond to the data split in the [json file](https://developer.download.nvidi
     <td>0.557</td>
     <td>0.831</td>
     <td>0.517</td>
-    <td>62.1</td>
-    <td><a href="https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/fold1_f48_ep300_4gpu_dice0_9059.zip">model</a></td>
+    <td>0.635</td>
+    <td><a></a></td>
 </tr>
 
 <tr>
-    <td>Swin UNETR</td>
+    <td>Swin UNETR Pretrained on GLI -> SSA</td>
     <td>0.663</td>
     <td>0.850</td>
     <td>0.662</td>
     <td>0.725</td>
-    <td><a href="https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/fold2_f48_ep300_4gpu_dice0_8981.zip">model</a></td>
+    <td><a></a></td>
 </tr>
 
 </table>
@@ -102,21 +102,21 @@ model = SwinUNETR(img_size=(128,128,128),
 
 
 The above Swin UNETR model is used for multi-modal MR images (4-channel input) with input image size ```(128, 128, 128)``` and for ```3``` class segmentation outputs and feature size of  ```48```.
-More details can be found in [1]. In addition, ```use_checkpoint=True``` enables the use of gradient checkpointing for memory-efficient training.
+In addition, ```use_checkpoint=True``` enables the use of gradient checkpointing for memory-efficient training.
 
 Using the default values for hyper-parameters, the following command can be used to initiate training using PyTorch native AMP package:
 ``` bash
 python main.py
 --feature_size=48
 --batch_size=1
---logdir=unetr_test_dir
+--logdir=test
 --fold=0
 --optim_lr=1e-4
 --lrschedule=warmup_cosine
 --infer_overlap=0.5
 --save_checkpoint
---val_every=10
---json_list='./jsons/brats21_folds.json'
+--val_every=5
+--json_list='./jsons/set.json'
 --data_dir=/brats2021/
 --use_checkpoint
 --noamp
@@ -127,41 +127,34 @@ python main.py
 To train a `Swin UNETR` from scratch on a single GPU with gradient check-pointing and without AMP:
 
 ```bash
-python main.py --json_list=<json-path> --data_dir=<data-path> --val_every=5 --noamp \
+python main.py --save_checkpoint --json_list=<json-path> --data_dir=<data-path> --val_every=5 --noamp \
 --roi_x=128 --roi_y=128 --roi_z=128  --in_channels=4 --spatial_dims=3 --use_checkpoint --feature_size=48
 ```
 
-## Training from scratch on multi-GPU with gradient check-pointing and without AMP
 
-To train a `Swin UNETR` from scratch on multi-GPU for 300 epochs with gradient check-pointing and without AMP:
+## Resume training from a halted process
+
+To resume training a `Swin UNETR` on multi-GPU without gradient check-pointing:
 
 ```bash
-python main.py --json_list=<json-path> --data_dir=<data-path> --max_epochs=300 --val_every=5 --noamp --distributed \
+python main.py --resume_ckpt --save_checkpoint --json_list=<json-path> --data_dir=<data-path> --val_every=5 --pretrained_model_name=<model-name> --pretrained_dir="./runs/test" --distributed \
 --roi_x=128 --roi_y=128 --roi_z=128  --in_channels=4 --spatial_dims=3 --use_checkpoint --feature_size=48
 ```
 
-## Training from scratch on multi-GPU without gradient check-pointing
 
-To train a `Swin UNETR` from scratch on multi-GPU without gradient check-pointing:
-
-```bash
-python main.py --json_list=<json-path> --data_dir=<data-path> --val_every=5 --distributed \
---roi_x=128 --roi_y=128 --roi_z=128  --in_channels=4 --spatial_dims=3 --feature_size=48
-```
-
-# Evaluation
+# Get Segmentation Output
 
 To evaluate a `Swin UNETR` on a single GPU, the model path using `pretrained_dir` and model
-name using `--pretrained_model_name` need to be provided:
+name using `--pretrained_model_name` need to be provided. You don't need to include a json list because the script generates an internal json list itself from your input data:
 
 ```bash
-python test.py --json_list=<json-path> --data_dir=<data-path> --feature_size=<feature-size>\
---infer_overlap=0.6 --pretrained_model_name=<model-name> --pretrained_dir=<model-dir>
+python test.py --data_dir=<data-path> --feature_size=<feature-size>\
+--infer_overlap=0.6 --pretrained_model_name=<model-name> --pretrained_dir=<model-dir> --output_dir=<output-path>
 ```
 
 # Finetuning
 
-Please download the checkpoints for models presented in the above table and place the model checkpoints in `pretrained_models` folder.
+Please download the checkpoints for models presented in the above table and place the model checkpoints in `pretrained_models` folder. You could also pretrain your model from scratch using the training script.
 Use the following commands for finetuning.
 
 ## Finetuning on single GPU with gradient check-pointing and without AMP
@@ -174,20 +167,6 @@ python main.py --json_list=<json-path> --data_dir=<data-path> --val_every=5 --no
 --pretrained_dir=<model-dir> --fold=1 --roi_x=128 --roi_y=128 --roi_z=128  --in_channels=4 --spatial_dims=3 --use_checkpoint --feature_size=48
 ```
 
-## Finetuning on multi-GPU with gradient check-pointing and without AMP
-
-To finetune a `Swin UNETR` base model on multi-GPU on fold 1 with gradient check-pointing and without amp,
-the model path using `pretrained_dir` and model  name using `--pretrained_model_name` need to be provided:
-
-```bash
-python main.py --json_list=<json-path> --distributed --data_dir=<data-path> --val_every=5 --noamp --pretrained_model_name=<model-name> \
---pretrained_dir=<model-dir> --fold=1 --roi_x=128 --roi_y=128 --roi_z=128  --in_channels=4 --spatial_dims=3 --use_checkpoint --feature_size=48
-```
-
-# Segmentation Output
-
-By following the commands for evaluating `Swin UNETR` in the above, `test.py` saves the segmentation outputs
-in the original spacing in a new folder based on the name of the experiment which is passed by `--exp_name`.
 
 # Citation
 If you find this repository useful, please consider citing UNETR paper:
