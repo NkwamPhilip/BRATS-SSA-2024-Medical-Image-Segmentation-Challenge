@@ -141,6 +141,10 @@ python main.py --resume_ckpt --save_checkpoint --json_list=<json-path> --data_di
 --roi_x=128 --roi_y=128 --roi_z=128  --in_channels=4 --spatial_dims=3 --use_checkpoint --feature_size=48
 ```
 
+## Experiment training with SWIN-UNETRV2
+
+To training a `Swin UNETR` on multi-GPU without gradient check-pointing, switch "main.py" to "swinv2ssa.py" found in the folder directory.
+
 
 # Get Segmentation Output
 
