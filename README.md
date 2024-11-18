@@ -1,11 +1,17 @@
-# Model Overview
-This repository contains the code for [Swin UNETR for the task of brain tumor  segmentation using the [BraTS 21, ASNR 2023, BRATS SSA 2024]. Swin UNETR ranked among top-perfoming models in BraTS 21 validation phase. The architecture of Swin UNETR is demonstrated as below
-![image](./assets/swin_unetr.png)
+# MICCAI 2024 Brain Tumor Segmentation Challenge: Team Transformers - Spark6
+This repository contains is SWIN-UNETR implementation for brain tumor  segmentation using the  BraTS-GLI Dataset (http://braintumorsegmentation.org/) for pretraining and BraTS-SSA dataset for finetuning and in-house validation.
+
+We employed two different approaches.
+(1) Our first approach leverages the large, diverse BraTS-GLI 2021 dataset for initial training to build a strong feature extractor and then adapt the model to the specific characteristics of the BraTS-Africa dataset. The BraTS-GLI dataset includes 1,251 cases, providing a robust foundation for learning general features of glioma segmentation across different institutions.
+(2) Train the model exclusively on the BraTS-Africa dataset to focus entirely on African-specific glioma characteristics. This strategy aims to eliminate any potential bias introduced by the BraTS-GLI 2021 dataset and ensures that the model is tailored entirely to the imaging and anatomical characteristics present in African patients.
+Our pretrained model was trained on BraTS-GLI with 1251 cases and no additional data. We used a five-fold cross-validation (0-4) with a ratio of 80:20 based on MONAI SwinUNTER implementation.
 
 # Tutorial
-Our tutorial for BraTS21 brain tumor segmentation using Swin UNETR model is provided in the following link.
+A colab file for BraTS21 brain tumor segmentation using Swin UNETR model is provided in the following link.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]([SWIN UNETR 2024.ipynb](https://colab.research.google.com/drive/1s19-dIDgSxXp5tcKZjDfOJbaVo_JH1Ao?usp=sharing))
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Project-MONAI/tutorials/blob/main/3d_segmentation/swin_unetr_brats21_segmentation_3d.ipynb)
+
+Model was trained on compute canada (cc).
 
 # Installing Dependencies
 Dependencies can be installed using:
@@ -14,17 +20,72 @@ pip install -r requirements.txt
 ```
 
 # Data Description
-
+# Pretraining Dataset
 Modality: MRI
-Size: 1345 3D volumes (1311 Training + 34 Validation)
-Challenge: BRATS SSA Brain Tumor Segmentation Challenge
+Size: 1251 3D volumes
+Challenge: RSNA-ASNR-MICCAI Brain Tumor Segmentation (BraTS) Challenge
+
+# Finetuned Dataset
+Modality: MRI
+Size: 95 3D volumes (60 Training, 35 Validation)
+Challenge: Brain Tumor Segmentation (BraTS) SSA Challenge
+
+For pretraining, json files can be generated using generate.py. Ensure you modify your input data directory in the python file : 
+```bash
+python generate.py
+```
+
+We switched the BraTS-SSA dataset label 3 back to 4, changing blue to yellow
+
+The provided segmentation labels have values of 1(red) for NCR, 2(green) for ED, 4(yellow) for ET, and 0 for everything else.
+
+![image](./assets/fig_brats21.png)
 
 
-The provided segmentation labels have values of 1 for NCR, 2 for ED, 3 for ET, and 0 for everything else.
 
-# Label.py was used to change ET label "4" to "3" in 2021 training sets.
+# Models
+We provide Swin UNETR models which are pre-trained on BraTS21 dataset as in the following. The folds
+correspond to the data split in the [json file](https://developer.download.nvidia.com/assets/Clara/monai/tutorials/brats21_folds.json).
 
-# create.py generates json file for training sets.
+<table>
+  <tr>
+    <th>Models</th>
+    <th>TC</th>
+    <th>WT</th>
+    <th>ET</th>
+    <th>Mean</th>
+    <th>Download </th>
+  </tr>
+<tr>
+    <td>SwinUNETR trained on GLI</td>
+    <td>0.882</td>
+    <td>0.918</td>
+    <td>0.833</td>
+    <td>0.877</td>
+    <td><a href="https://drive.google.com/file/d/15TowXpPZYLqtZdJMymQIiWN511UIYwtD/view?usp=sharing">model</a></td>
+</tr>
+
+<tr>
+    <td>Swin UNETR with only SSA</td>
+    <td>0.557</td>
+    <td>0.831</td>
+    <td>0.517</td>
+    <td>62.1</td>
+    <td><a href="https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/fold1_f48_ep300_4gpu_dice0_9059.zip">model</a></td>
+</tr>
+
+<tr>
+    <td>Swin UNETR</td>
+    <td>0.663</td>
+    <td>0.850</td>
+    <td>0.662</td>
+    <td>0.725</td>
+    <td><a href="https://github.com/Project-MONAI/MONAI-extra-test-data/releases/download/0.8.1/fold2_f48_ep300_4gpu_dice0_8981.zip">model</a></td>
+</tr>
+
+</table>
+
+Mean Dice refers to average Dice of WT, ET and TC tumor semantic classes.
 
 # Training
 
@@ -55,15 +116,11 @@ python main.py
 --infer_overlap=0.5
 --save_checkpoint
 --val_every=10
---json_list=<jsonlist>
---data_dir=<datadir>
+--json_list='./jsons/brats21_folds.json'
+--data_dir=/brats2021/
 --use_checkpoint
 --noamp
 ```
-
-
-## NOTE: "main.py" contains codes with Dice Loss function, "maincrossentropy.py" contains codes with Dice Cross Entropy Loss Functions. Interchange "main.py" for "maincrossentropy.py when training or finetuning with Dice Cross Entropy Loss"
-
 
 ## Training from scratch on single GPU with gradient check-pointing and without AMP
 
@@ -131,3 +188,36 @@ python main.py --json_list=<json-path> --distributed --data_dir=<data-path> --va
 
 By following the commands for evaluating `Swin UNETR` in the above, `test.py` saves the segmentation outputs
 in the original spacing in a new folder based on the name of the experiment which is passed by `--exp_name`.
+
+# Citation
+If you find this repository useful, please consider citing UNETR paper:
+
+```
+@article{hatamizadeh2022swin,
+  title={Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images},
+  author={Hatamizadeh, Ali and Nath, Vishwesh and Tang, Yucheng and Yang, Dong and Roth, Holger and Xu, Daguang},
+  journal={arXiv preprint arXiv:2201.01266},
+  year={2022}
+}
+
+@inproceedings{tang2022self,
+  title={Self-supervised pre-training of swin transformers for 3d medical image analysis},
+  author={Tang, Yucheng and Yang, Dong and Li, Wenqi and Roth, Holger R and Landman, Bennett and Xu, Daguang and Nath, Vishwesh and Hatamizadeh, Ali},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={20730--20740},
+  year={2022}
+}
+```
+
+# References
+[1]: Hatamizadeh, A., Nath, V., Tang, Y., Yang, D., Roth, H. and Xu, D., 2022. Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images. arXiv preprint arXiv:2201.01266.
+
+[2]: Tang, Y., Yang, D., Li, W., Roth, H.R., Landman, B., Xu, D., Nath, V. and Hatamizadeh, A., 2022. Self-supervised pre-training of swin transformers for 3d medical image analysis. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 20730-20740).
+
+[3] U.Baid, et al., The RSNA-ASNR-MICCAI BraTS 2021 Benchmark on Brain Tumor Segmentation and Radiogenomic Classification, arXiv:2107.02314, 2021.
+
+[4] B. H. Menze, A. Jakab, S. Bauer, J. Kalpathy-Cramer, K. Farahani, J. Kirby, et al. "The Multimodal Brain Tumor Image Segmentation Benchmark (BRATS)", IEEE Transactions on Medical Imaging 34(10), 1993-2024 (2015) DOI: 10.1109/TMI.2014.2377694
+
+[5] S. Bakas, H. Akbari, A. Sotiras, M. Bilello, M. Rozycki, J.S. Kirby, et al., "Advancing The Cancer Genome Atlas glioma MRI collections with expert segmentation labels and radiomic features", Nature Scientific Data, 4:170117 (2017) DOI: 10.1038/sdata.2017.117
+
+[6] S. Bakas, H. Akbari, A. Sotiras, M. Bilello, M. Rozycki, J. Kirby, et al., "Segmentation Labels and Radiomic Features for the Pre-operative Scans of the TCGA-GBM collection", The Cancer Imaging Archive, 2017. DOI: 10.7937/K9/TCIA.2017.KLXWJJ1Q
