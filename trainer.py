@@ -25,21 +25,97 @@ from utils.utils import AverageMeter, distributed_all_gather
 from monai.data import decollate_batch
 
 
+def remap_labels(batch_data):
+    """
+    Remap label values from {0,1,2,4} to {0,1,2,3}
+    Label meanings:
+    0: Background
+    1: Necrotic and Non-Enhancing Tumor Core (NCR/NET)
+    2: Peritumoral Edema (ED)
+    4->3: Enhancing Tumor (ET)
+    """
+    if isinstance(batch_data, list):
+        data, target = batch_data
+        target[target == 4] = 3
+        return [data, target]
+    else:
+        target = batch_data["label"]
+        target[target == 4] = 3
+        batch_data["label"] = target
+        return batch_data
+
+
+def validate_labels(batch_data, args):
+    """Validate label consistency in the batch"""
+    if isinstance(batch_data, list):
+        _, target = batch_data
+    else:
+        target = batch_data["label"]
+
+    # Get unique values in labels
+    unique_values = torch.unique(target)
+
+    # Calculate class distribution
+    class_dist = {}
+    for val in unique_values:
+        class_dist[val.item()] = (target == val).sum().item()
+
+    # Basic statistics
+    stats = {
+        "unique_values": unique_values.cpu().numpy(),
+        "max_value": target.max().item(),
+        "min_value": target.min().item(),
+        "num_classes": len(unique_values),
+        "class_distribution": class_dist
+    }
+
+    return stats
+
+
 def train_epoch(model, loader, optimizer, scaler, epoch, loss_func, args):
     model.train()
     start_time = time.time()
     run_loss = AverageMeter()
+
+    # Validate labels at the start of training
+    if epoch == 0 and args.rank == 0:
+        print("Validating label format...")
+        first_batch = next(iter(loader))
+        # Validate before remapping
+        pre_stats = validate_labels(first_batch, args)
+        print("Label statistics before remapping:")
+        print(f"Class distribution: {pre_stats['class_distribution']}")
+
+        # Remap and validate again
+        first_batch = remap_labels(first_batch)
+        post_stats = validate_labels(first_batch, args)
+        print("\nLabel statistics after remapping:")
+        print(f"Class distribution: {post_stats['class_distribution']}")
+
     for idx, batch_data in enumerate(loader):
+        # Remap labels
+        batch_data = remap_labels(batch_data)
+
         if isinstance(batch_data, list):
             data, target = batch_data
         else:
             data, target = batch_data["image"], batch_data["label"]
+
+        # Periodic validation
+        if idx % 100 == 0 and args.rank == 0:
+            label_stats = validate_labels(batch_data, args)
+            print(
+                f"\nBatch {idx} label distribution: {label_stats['class_distribution']}")
+
         data, target = data.cuda(args.rank), target.cuda(args.rank)
+
         for param in model.parameters():
             param.grad = None
+
         with autocast(enabled=args.amp):
             logits = model(data)
             loss = loss_func(logits, target)
+
         if args.amp:
             scaler.scale(loss).backward()
             scaler.step(optimizer)
@@ -47,6 +123,7 @@ def train_epoch(model, loader, optimizer, scaler, epoch, loss_func, args):
         else:
             loss.backward()
             optimizer.step()
+
         if args.distributed:
             loss_list = distributed_all_gather(
                 [loss], out_numpy=True, is_valid=idx < loader.sampler.valid_length)
@@ -75,18 +152,33 @@ def val_epoch(model, loader, epoch, acc_func, args, model_inferer=None, post_sig
 
     with torch.no_grad():
         for idx, batch_data in enumerate(loader):
+            # Remap labels
+            batch_data = remap_labels(batch_data)
+
             data, target = batch_data["image"], batch_data["label"]
+
+            # Validation checks
+            if idx == 0 and args.rank == 0:
+                label_stats = validate_labels(batch_data, args)
+                print("\nValidation Label Statistics:")
+                print(
+                    f"Class distribution: {label_stats['class_distribution']}")
+
             data, target = data.cuda(args.rank), target.cuda(args.rank)
+
             with autocast(enabled=args.amp):
                 logits = model_inferer(data)
+
             val_labels_list = decollate_batch(target)
             val_outputs_list = decollate_batch(logits)
             val_output_convert = [post_pred(post_sigmoid(
                 val_pred_tensor)) for val_pred_tensor in val_outputs_list]
+
             acc_func.reset()
             acc_func(y_pred=val_output_convert, y=val_labels_list)
             acc, not_nans = acc_func.aggregate()
             acc = acc.cuda(args.rank)
+
             if args.distributed:
                 acc_list, not_nans_list = distributed_all_gather(
                     [acc, not_nans], out_numpy=True, is_valid=idx < loader.sampler.valid_length
@@ -112,15 +204,18 @@ def val_epoch(model, loader, epoch, acc_func, args, model_inferer=None, post_sig
                     ", time {:.2f}s".format(time.time() - start_time),
                 )
             start_time = time.time()
-
     return run_acc.avg
 
 
-def save_checkpoint(model, epoch, filename="model2.pt", best_acc=0, dir_add="/scratch/u/uanazodo/spark6/BRATS21/runs/test"):
-    state_dict = model.state_dict()
+def save_checkpoint(model, epoch, args, filename="model.pt", best_acc=0, optimizer=None, scheduler=None):
+    state_dict = model.state_dict() if not args.distributed else model.module.state_dict()
     save_dict = {"epoch": epoch, "best_acc": best_acc,
                  "state_dict": state_dict}
-    filename = os.path.join(dir_add, filename)
+    if optimizer is not None:
+        save_dict["optimizer"] = optimizer.state_dict()
+    if scheduler is not None:
+        save_dict["scheduler"] = scheduler.state_dict()
+    filename = os.path.join(args.logdir, filename)
     torch.save(save_dict, filename)
     print("Saving checkpoint", filename)
 
@@ -210,11 +305,20 @@ def run_training(
                     print(
                         "new best ({:.6f} --> {:.6f}). ".format(val_acc_max, val_avg_acc))
                     val_acc_max = val_avg_acc
-                    save_checkpoint(
-                        model,
-                        epoch,
-                        best_acc=val_acc_max,
-                    )
+                    b_new_best = True
+                    if args.rank == 0 and args.logdir is not None and args.save_checkpoint:
+                        save_checkpoint(
+                            model, epoch, args, best_acc=val_acc_max, optimizer=optimizer, scheduler=scheduler
+                        )
+            if args.rank == 0 and args.logdir is not None and args.save_checkpoint:
+                save_checkpoint(model, epoch, args,
+                                best_acc=val_acc_max, filename="model.pt")
+                if b_new_best:
+                    print("Copying to model.pt new best model!!!!")
+                    shutil.copyfile(os.path.join(
+                        args.logdir, "model.pt"), os.path.join(args.logdir, "model.pt"))
+
+        if scheduler is not None:
             scheduler.step()
 
     print("Training Finished !, Best Accuracy: ", val_acc_max)

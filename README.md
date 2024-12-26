@@ -30,7 +30,7 @@ For pretraining, json files can be generated using generate.py. Ensure you modif
 python generate.py
 ```
 
-# We switched the BraTS-SSA dataset label 3 back to 4, changing blue to yellow
+# We switched the BraTS-SSA dataset label 3 back to 4, changing blue to yellow. You can easily do this by modifying the input and output directory in "update_labels.py", before running. 
 
 The provided segmentation labels have values of 1(red) for NCR, 2(green) for ED, 4(yellow) for ET, and 0 for everything else.
 

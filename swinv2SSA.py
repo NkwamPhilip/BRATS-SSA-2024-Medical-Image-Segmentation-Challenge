@@ -182,6 +182,7 @@ def main_worker(gpu, args):
         out_channels=args.out_channels,
         feature_size=args.feature_size,
         use_checkpoint=True,
+        use_v2=True
     )
 
     if args.resume_ckpt:
